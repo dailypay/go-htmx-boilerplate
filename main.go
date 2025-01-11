@@ -25,8 +25,10 @@ type TriggerHeader struct {
 	ErrorNotification   *string `json:"errorNotification,omitempty"`
 }
 
-var tmpl *template.Template
-var db *sql.DB
+var (
+	tmpl *template.Template
+	db   *sql.DB
+)
 
 func main() {
 	var err error
@@ -42,10 +44,10 @@ func main() {
 	defer db.Close()
 
 	_, err = db.Exec(`CREATE TABLE IF NOT EXISTS todos (
-		id INTEGER PRIMARY KEY AUTOINCREMENT,
-		completed BOOLEAN NOT NULL,
-		content TEXT NOT NULL
-	)`)
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  completed BOOLEAN NOT NULL,
+  content TEXT NOT NULL
+)`)
 	if err != nil {
 		panic(err)
 	}
